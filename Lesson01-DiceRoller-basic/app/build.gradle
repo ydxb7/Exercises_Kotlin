@@ -14,6 +14,8 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        // TODO (1) set vectorDrawables
+        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         release {

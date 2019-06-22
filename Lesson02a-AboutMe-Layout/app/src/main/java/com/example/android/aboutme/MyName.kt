@@ -21,4 +21,5 @@ package com.example.android.aboutme
  * Used to demonstrate data binding.
  */
 
+// TODO (6) Create data class to store string info
 data class MyName(var name: String = "", var nickname: String = "")

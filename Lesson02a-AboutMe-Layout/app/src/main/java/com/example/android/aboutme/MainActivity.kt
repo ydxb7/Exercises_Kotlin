@@ -37,21 +37,21 @@ import com.example.android.aboutme.databinding.ActivityMainBinding
  */
 class MainActivity : AppCompatActivity() {
 
-    // Binding object for MainActivity.
+    // TODO (3) Binding object for MainActivity.
     // Name of the object is derived from the name of the activity or fragment.
     private lateinit var binding: ActivityMainBinding
 
-    // Instance of MyName data class.
+    // TODO (8) Instance of MyName data class.
     private val myName: MyName = MyName("Aleks Haecky")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // Setting the content view using DataBindingUtil creates an instance of
+        // TODO (4) Setting the content view using DataBindingUtil creates an instance of
         // ActivityMainBinding from the supplied activity and the supplied layout. This object
         // contains mappings between the activity and layout,
         // and functionality to interact with them.
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        // Set the value of the myName variable that is declared and used in the layout file.
+        // TODO (9) Set the value of the myName variable that is declared and used in the layout file.
         binding.myName = myName
 
         // Click listener for the Done button.
@@ -66,10 +66,11 @@ class MainActivity : AppCompatActivity() {
      * by eliminating calls to findViewById and changing data in the binding object.
      */
     private fun addNickname(view: View) {
+        // TODO (5) 用binding.apply让code更简洁
         binding.apply {
-            // Set the text for nicknameText to the value in nicknameEdit.
+            // TODO (10) Set the text for nicknameText to the value in nicknameEdit.
             myName?.nickname = nicknameEdit.text.toString()
-            // Invalidate all binding expressions and request a new rebind to refresh UI
+            // TODO (5.1) Invalidate all binding expressions and request a new rebind to refresh UI
             invalidateAll()
             // Change which views are visible.
             // Remove the EditText and the Button.
@@ -80,7 +81,8 @@ class MainActivity : AppCompatActivity() {
             // Make the TexView with the nickname visible.
             nicknameText.visibility = View.VISIBLE
         }
-        // Hide the keyboard.
+
+        // TODO (0) Hide the keyboard.
         val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(view.windowToken, 0)
     }

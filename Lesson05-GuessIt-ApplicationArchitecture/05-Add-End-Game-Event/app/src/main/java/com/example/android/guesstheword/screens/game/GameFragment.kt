@@ -71,6 +71,13 @@ class GameFragment : Fragment() {
         // performs the code in gameFinished()
         // Make sure to call onGameFinishCompete to tell your viewmodel that the game finish event
         // was dealt with
+        viewModel.eventGameFinish.observe(this, Observer { hasFinished ->
+            if (hasFinished){
+                gameFinished()
+                // 不用这个的话会有小bug，每次旋转屏幕就会自动触发，但是我们不需要，只要触发一次就行
+                viewModel.onGameFinishComplete()
+            }
+        })
 
         return binding.root
 

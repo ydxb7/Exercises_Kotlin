@@ -19,6 +19,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <!-- TODO (01) Add a GameViewModel variable to the layout -->
+    <data>
+        <variable
+            name="gameViewModel"
+            type="com.example.android.guesstheword.screens.game.GameViewModel" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/game_layout"
@@ -93,13 +98,15 @@
             tools:text="Score: 2" />
 
         <!-- TODO (02) Use the viewmodel variable to add onClick attributes for both buttons
-        that call the associated methods in the GameViewModel -->
+        that call the associated methods in the GameViewModel.
+        android:onClick="@{() -> gameViewModel.onSkip()}": Register the lambda inside {} as the onClickListener  -->
         <Button
             android:id="@+id/skip_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:text="@string/skip"
+            android:onClick="@{() -> gameViewModel.onSkip()}"
             android:theme="@style/SkipButton"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/correct_button"
@@ -121,6 +128,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:text="@string/got_it"
+            android:onClick="@{() -> gameViewModel.onCorrect()}"
             android:theme="@style/GoButton"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

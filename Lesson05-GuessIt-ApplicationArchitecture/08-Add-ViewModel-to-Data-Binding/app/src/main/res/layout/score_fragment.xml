@@ -19,6 +19,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <!-- TODO (04) Add a ScoreViewModel variable to the layout -->
+    <data>
+        <variable
+            name="scoreViewModel"
+            type="com.example.android.guesstheword.screens.score.ScoreViewModel" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/score_layout"
@@ -69,6 +74,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="32dp"
             android:text="@string/play_again"
+            android:onClick="@{() -> scoreViewModel.onPlayAgain()}"
             android:theme="@style/GoButton"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

@@ -124,9 +124,11 @@ class GameViewModel : ViewModel() {
     private fun nextWord() {
         //Select and remove a word from the list
         if (wordList.isEmpty()) {
-            resetList()
+//            resetList()
+            _eventGameFinish.value = true
+        } else {
+            _word.value = wordList.removeAt(0)
         }
-        _word.value = wordList.removeAt(0)
     }
 
     /** Methods for buttons presses **/

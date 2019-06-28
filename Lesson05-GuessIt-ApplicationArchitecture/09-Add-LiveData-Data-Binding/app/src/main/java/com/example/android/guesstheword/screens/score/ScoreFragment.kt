@@ -59,11 +59,12 @@ class ScoreFragment : Fragment() {
 
         binding.scoreViewModel = viewModel
         // TODO (05) Call binding.setLifecycleOwner and remove the score observer
+        binding.setLifecycleOwner(this)
 
         // Add observer for score
-        viewModel.score.observe(this, Observer { newScore ->
-            binding.scoreText.text = newScore.toString()
-        })
+//        viewModel.score.observe(this, Observer { newScore ->
+//            binding.scoreText.text = newScore.toString()
+//        })
 
         // Navigates back to title when button is pressed
         viewModel.eventPlayAgain.observe(this, Observer { playAgain ->

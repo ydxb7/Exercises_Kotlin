@@ -104,7 +104,12 @@ class SleepTrackerFragment : Fragment() {
             it?.let {
 
                 // TODO (06) Replace adapter.data assignment with call to adapter.submitList().
-                adapter.data = it
+//                adapter.data = it
+                // call submitList to tell a new version of list is available. It will diff the new
+                // list against the old one, then run all the needed changes on the recyclerView.
+                // It will detect any items that were added, removed, moved or changed and update
+                // the items shown by recyclerView.
+                adapter.submitList(it)
             }
         })
 

@@ -44,21 +44,27 @@ class SleepNightAdapter : ListAdapter<SleepNight,
         : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: SleepNight) {
-            // TODO (02) Replace the code below with a single binding to the SleepNight item,
-            // followed by executePendingBindings().
-            val res = itemView.context.resources
+            //TODO (02) Replace the code below with a single binding to the SleepNight item,
+            // followed by executePendingBindings(). Use data binding
+            binding.sleep = item  // tell binding object about our new SleepNight
+            // ask data binding to execute our pendingBinding. It's always a good idea to execute
+            // pendingBinding when using bindingAdapters in the recyclerView.
+            // Since it can be slightly faster to size the views.
+            binding.executePendingBindings()
 
-            binding.sleepLength.text = convertDurationToFormatted(item.startTimeMilli, item.endTimeMilli, res)
-            binding.qualityString.text = convertNumericQualityToString(item.sleepQuality, res)
-            binding.qualityImage.setImageResource(when (item.sleepQuality) {
-                0 -> R.drawable.ic_sleep_0
-                1 -> R.drawable.ic_sleep_1
-                2 -> R.drawable.ic_sleep_2
-                3 -> R.drawable.ic_sleep_3
-                4 -> R.drawable.ic_sleep_4
-                5 -> R.drawable.ic_sleep_5
-                else -> R.drawable.ic_sleep_active
-            })
+//            val res = itemView.context.resources
+//
+//            binding.sleepLength.text = convertDurationToFormatted(item.startTimeMilli, item.endTimeMilli, res)
+//            binding.qualityString.text = convertNumericQualityToString(item.sleepQuality, res)
+//            binding.qualityImage.setImageResource(when (item.sleepQuality) {
+//                0 -> R.drawable.ic_sleep_0
+//                1 -> R.drawable.ic_sleep_1
+//                2 -> R.drawable.ic_sleep_2
+//                3 -> R.drawable.ic_sleep_3
+//                4 -> R.drawable.ic_sleep_4
+//                5 -> R.drawable.ic_sleep_5
+//                else -> R.drawable.ic_sleep_active
+//            })
         }
 
         companion object {

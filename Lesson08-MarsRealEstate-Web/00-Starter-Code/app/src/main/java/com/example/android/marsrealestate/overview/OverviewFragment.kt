@@ -18,6 +18,7 @@
 package com.example.android.marsrealestate.overview
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
@@ -61,4 +62,16 @@ class OverviewFragment : Fragment() {
         inflater.inflate(R.menu.overflow_menu, menu)
         super.onCreateOptionsMenu(menu, inflater)
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.i("OverviewFragment", "onDestroy aaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        Log.i("OverviewFragment", "onCreate aaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+    }
+
+
 }

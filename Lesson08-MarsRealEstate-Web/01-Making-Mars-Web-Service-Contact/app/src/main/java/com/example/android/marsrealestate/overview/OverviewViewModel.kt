@@ -20,6 +20,10 @@ package com.example.android.marsrealestate.overview
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.android.marsrealestate.network.MarsApi
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 /**
  * The [ViewModel] that is attached to the [OverviewFragment].
@@ -41,10 +45,25 @@ class OverviewViewModel : ViewModel() {
     }
 
     /**
-     * Sets the value of the status LiveData to the Mars API status.
+     * Sets the value of the response LiveData to the Mars API status or the successful number of
+     * Mars properties retrieved.
      */
     private fun getMarsRealEstateProperties() {
         // TODO (05) Call the MarsApi to enqueue the Retrofit request, implementing the callbacks
-        _response.value = "Set the Mars API Response here!"
+        // MarsApi.retrofitService.getProperties() returns a Call object, we then call enqueue() on
+        // that callback to start the network request on the background thread. The enqueue() method
+        // takes a retrofit callback class as input that contains methods that will be called when the
+        // request is complete.
+        MarsApi.retrofitService.getProperties().enqueue( object: Callback<String> {
+            override fun onFailure(call: Call<String>, t: Throwable) {
+                _response.value = "Failure: " + t.message
+            }
+
+            override fun onResponse(call: Call<String>, response: Response<String>) {
+                _response.value = response.body()
+            }
+        })
+
+//        _response.value = "Set the Mars API Response here!"
     }
 }

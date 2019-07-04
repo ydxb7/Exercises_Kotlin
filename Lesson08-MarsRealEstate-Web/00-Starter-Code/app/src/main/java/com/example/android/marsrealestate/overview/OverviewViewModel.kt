@@ -17,6 +17,7 @@
 
 package com.example.android.marsrealestate.overview
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -38,6 +39,7 @@ class OverviewViewModel : ViewModel() {
      */
     init {
         getMarsRealEstateProperties()
+        Log.i("OverviewViewModel", "OverviewViewModel init! aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
     }
 
     /**
@@ -45,5 +47,10 @@ class OverviewViewModel : ViewModel() {
      */
     private fun getMarsRealEstateProperties() {
         _response.value = "Set the Mars API Response here!"
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        Log.i("OverviewViewModel", "onCleared called! aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
     }
 }

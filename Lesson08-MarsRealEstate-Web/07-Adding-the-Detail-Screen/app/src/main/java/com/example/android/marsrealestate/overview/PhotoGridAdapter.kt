@@ -30,7 +30,7 @@ import com.example.android.marsrealestate.network.MarsProperty
  * data, including computing diffs between lists.
  */
 // TODO (08) Have PhotoGridAdapter take the OnClickListener class as a constructor property parameter
-class PhotoGridAdapter : ListAdapter<MarsProperty, PhotoGridAdapter.MarsPropertyViewHolder>(DiffCallback) {
+class PhotoGridAdapter(private val onClickListener: OnClickListener) : ListAdapter<MarsProperty, PhotoGridAdapter.MarsPropertyViewHolder>(DiffCallback) {
 
     /**
      * The MarsPropertyViewHolder constructor takes the binding variable from the associated
@@ -75,7 +75,13 @@ class PhotoGridAdapter : ListAdapter<MarsProperty, PhotoGridAdapter.MarsProperty
         val marsProperty = getItem(position)
         // TODO (09) Call the onClick Function from the onClickListener in a lambda from setOnClickListener
         holder.bind(marsProperty)
+        holder.itemView.setOnClickListener{
+            onClickListener.onClick(marsProperty)
+        }
     }
 
     // TODO (07) Create an OnClickListener class with a lambda in its constructor that initializes a matching onClick function
+    class OnClickListener(val clickListener: (marsPriperty: MarsProperty) -> Unit){
+        fun onClick(marsProperty: MarsProperty) = clickListener(marsProperty)
+    }
 }

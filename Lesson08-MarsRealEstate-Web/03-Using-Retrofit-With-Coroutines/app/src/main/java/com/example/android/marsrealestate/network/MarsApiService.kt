@@ -17,8 +17,10 @@
 
 package com.example.android.marsrealestate.network
 
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import kotlinx.coroutines.Deferred
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -41,6 +43,7 @@ private val moshi = Moshi.Builder()
 private val retrofit = Retrofit.Builder()
         .addConverterFactory(MoshiConverterFactory.create(moshi))
         // TODO (02) Use .addCallAdapterFactory to add the CoroutineCallAdapterFactory
+        .addCallAdapterFactory(CoroutineCallAdapterFactory())
         .baseUrl(BASE_URL)
         .build()
 
@@ -56,7 +59,10 @@ interface MarsApiService {
     @GET("realestate")
     fun getProperties():
     // TODO (03) Change the return type from our getProperties call to Deferred
-            Call<List<MarsProperty>>
+            // A Deffered is a kind of Coroutine Job that can directly return the result
+            // A Coroutine Job provides a way of cancelling and determining the state of the coroutine
+            // But unlike a Job, Deffered has a method called await, await is a suspend function of a Deffered.
+            Deferred<List<MarsProperty>>
 }
 
 /**

@@ -44,6 +44,7 @@ interface MarsApiService{
     // specify the path or endpoint that we want whis method to use. The endpoint for the json
     // response is realestate. When we call the getProperties method, retrofit append the endpoint
     // realestate to the BASE_URL, and creates a call object. The call object is used to start the request.
+    // https://mars.udacity.com/realestate
     @GET("realestate")
     fun getProperties():
             Call<String>

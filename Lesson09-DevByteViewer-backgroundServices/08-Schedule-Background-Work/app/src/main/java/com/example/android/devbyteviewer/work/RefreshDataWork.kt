@@ -28,6 +28,10 @@ class RefreshDataWorker(appContext: Context, params: WorkerParameters):
         CoroutineWorker(appContext, params) {
 
     // TODO (06) Create a companion object and define a WORK_NAME constant.
+    companion object{
+        // 这个 worker 的 unique name，用于区别不同的work
+        const val WORK_NAME = "RefreshDataWorker"
+    }
 
     /**
      * A coroutine-friendly method to do your work.

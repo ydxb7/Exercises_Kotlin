@@ -37,7 +37,8 @@ class AddGdgFragment : Fragment() {
                 viewModel.doneShowingSnackbar()
 
                 // TODO (01) Use the binding to set the button's text and content description.
-
+                binding.button.text = getText(R.string.done)
+                binding.button.contentDescription = getString(R.string.submitted)
             }
         })
 
